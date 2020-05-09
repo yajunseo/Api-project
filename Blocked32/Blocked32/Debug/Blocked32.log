@@ -1,0 +1,32 @@
+﻿  Blocked32.cpp
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(129,17): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(130,18): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,38): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,38): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,54): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,54): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,74): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,74): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,91): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(132,91): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(133,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(134,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(202,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(203,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(203,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(204,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(205,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(137,12): warning C4101: 'bmp' :참조되지 않은 지역 변수입니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(136,13): warning C4101: 'hBitmap' :참조되지 않은 지역 변수입니다.
+C:\Users\yajunseo\source\repos\Blocked32\Blocked32\Blocked32.cpp(126,9): warning C4101: 'memdc' :참조되지 않은 지역 변수입니다.
+  Blocked32.vcxproj -> C:\Users\yajunseo\source\repos\Blocked32\Debug\Blocked32.exe
