@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "Blocked32.h"
+#include "time.h"
 
 #define MAX_LOADSTRING 100
 
@@ -123,25 +124,36 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    srand(DWORD(GetTickCount()));
     HDC memdc;
     RECT rc;
     GetClientRect(hWnd, &rc);
     float width = rc.right - rc.left;
     float height = rc.bottom - rc.top;
     float blockWidth = height / 6;
+    int x, y;
+    static int chanceClickNumber = 0;
+    static bool isChanceClick = false;
+    static int chanceNum = 0;
+    static int chanceCount = 0;
+
     RECT chance1 = { blockWidth  * 6 + 50,blockWidth * 2, blockWidth * 7 + 50 ,blockWidth * 3 };
     RECT chance2 = { chance1.right, blockWidth * 2, chance1.right + blockWidth ,blockWidth * 3 };
     RECT chance3 = { chance2.right, blockWidth * 2, chance2.right + blockWidth ,blockWidth * 3 };
 
     HBITMAP hBitmap;
     BITMAP bmp;
-
+    TCHAR str[100];
 
     static bool isStart = false;
     static int obstacleCnt = 2;
     static int goal = 32;
     switch (message)
     {
+    case WM_CREATE:
+        chanceNum = rand() % 3 + 1;
+        wsprintf(str,_T("찬스 횟수: %d 번"), chanceCount);
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -192,6 +204,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    case WM_LBUTTONDOWN:
+        x = LOWORD(lParam);
+        y = HIWORD(lParam);
+        if (!isStart && !isChanceClick)
+        {
+            if(chance1.left<= x && x<=chance1.right && chance1.top <= y && y <= chance1.bottom)
+                chanceClickNumber = 1;
+            else if (chance2.left <= x && x <= chance2.right && chance2.top <= y && y <= chance2.bottom)
+                chanceClickNumber = 2;
+            else if (chance3.left <= x && x <= chance3.right && chance3.top <= y && y <= chance3.bottom)
+                chanceClickNumber = 3;
+      
+            isChanceClick = true;
+        }
+        InvalidateRect(hWnd, NULL, true);
+        break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
@@ -208,15 +236,54 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             Rectangle(hdc, chance2.left, chance2.top, chance2.right, chance2.bottom);
             Rectangle(hdc, chance3.left, chance3.top, chance3.right, chance3.bottom);
 
+            if (!isStart)
+            {
+      
+                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP11));
+                if (chanceNum == 1)
+                {
+                    DeleteObject(hBitmap);
+                    hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
+                }
+                else if (chanceNum == 2)
+                {
+                    DeleteObject(hBitmap);
+                    hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));
+                }
+                else if (chanceNum == 3)
+                {
+                    DeleteObject(hBitmap);
+                    hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP3));
+                }
+                if (chanceCount == 0)
+                {
+                    chanceCount = chanceNum;
+                }
+             
+                memdc = CreateCompatibleDC(hdc);
+                SelectObject(memdc, hBitmap);
+                GetObject(hBitmap, sizeof(BITMAP), &bmp);
+                if (chanceClickNumber != 0)
+                {
+                    if (chanceClickNumber == 1)
+                        StretchBlt(hdc, chance1.left + 5, chance1.top + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+                    else if (chanceClickNumber == 2)
+                        StretchBlt(hdc, chance2.left + 5, chance2.top + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+                    else if (chanceClickNumber == 3)
+                        StretchBlt(hdc, chance3.left + 5, chance3.top + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 
-           /* hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
-            memdc = CreateCompatibleDC(hdc);
-            SelectObject(memdc, hBitmap);
-            GetObject(hBitmap, sizeof(BITMAP), &bmp);
-            StretchBlt(hdc, chance.left + 5, chance.top + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight,  SRCCOPY);
-            DeleteObject(hBitmap);
-            DeleteDC(memdc);*/
-           
+                }
+                DeleteObject(hBitmap);
+                DeleteDC(memdc);
+            }
+            else
+            {
+
+            }
+
+
+            wsprintf(str, _T("찬스 횟수: %d 번"), chanceCount);
+            TextOut(hdc, rc.right - 120, rc.top + 5, str, wcslen(str));
 
 
             EndPaint(hWnd, &ps);
