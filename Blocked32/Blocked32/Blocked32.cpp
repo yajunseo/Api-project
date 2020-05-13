@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Blocked32.h"
 #include "time.h"
+#include "Resource.h"
 
 #define MAX_LOADSTRING 100
 
@@ -148,11 +149,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     static bool isStart = false;
     static int obstacleCnt = 2;
     static int goal = 32;
+
+    static int arr[6][6][2] = { 0, };  // 0: 없음  1:장애물  2:숫자블럭 //  숫자
+    int obstacleX, obstacleY;
     switch (message)
     {
     case WM_CREATE:
         chanceNum = rand() % 3 + 1;
         wsprintf(str,_T("찬스 횟수: %d 번"), chanceCount);
+        obstacleX = rand() % 6;
+        obstacleY = rand() % 6;
+        arr[obstacleX][obstacleY][1] = 1;
+        obstacleX = rand() % 6;
+        obstacleY = rand() % 6;
+        arr[obstacleX][obstacleY][1] = 1;
+        obstacleX = rand() % 6;
+        obstacleY = rand() % 6;
+        arr[obstacleX][obstacleY][1] = 2;
+        arr[obstacleX][obstacleY][2] = 2;
+        obstacleX = rand() % 6;
+        obstacleY = rand() % 6;
+        arr[obstacleX][obstacleY][1] = 2;
+        arr[obstacleX][obstacleY][2] = 2;
         break;
     case WM_COMMAND:
         {
@@ -203,6 +221,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
+        InvalidateRect(hWnd, NULL, true);
         break;
     case WM_LBUTTONDOWN:
         x = LOWORD(lParam);
@@ -224,6 +243,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+            memdc = CreateCompatibleDC(hdc);
+            hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP11));
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             for (int i = 0; i <= 6; i++)
             {
@@ -238,8 +259,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             if (!isStart)
             {
-      
-                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP11));
                 if (chanceNum == 1)
                 {
                     DeleteObject(hBitmap);
@@ -260,7 +279,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     chanceCount = chanceNum;
                 }
              
-                memdc = CreateCompatibleDC(hdc);
+                
                 SelectObject(memdc, hBitmap);
                 GetObject(hBitmap, sizeof(BITMAP), &bmp);
                 if (chanceClickNumber != 0)
@@ -273,19 +292,43 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         StretchBlt(hdc, chance3.left + 5, chance3.top + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 
                 }
-                DeleteObject(hBitmap);
-                DeleteDC(memdc);
+            /*    DeleteObject(hBitmap);
+                DeleteDC(memdc);*/
             }
-            else
+            else if(isStart)
             {
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (arr[i][j][1] == 1)
+                        {
+                            hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP12));
+                            GetObject(hBitmap, sizeof(BITMAP), &bmp);
+                            SelectObject(memdc, hBitmap);
+                            StretchBlt(hdc, j* blockWidth , i * blockWidth , blockWidth + 1 , blockWidth +1,  memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+                        }
+                        else if (arr[i][j][1] == 2)
+                        {
+                            if (arr[i][j][2] == 2)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));
 
+                            GetObject(hBitmap, sizeof(BITMAP), &bmp);
+                            SelectObject(memdc, hBitmap);
+                            StretchBlt(hdc, j* blockWidth + 5, i* blockWidth + 5, blockWidth - 10, blockWidth - 10, memdc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+
+                        }
+                    }
+                }
+              
             }
 
 
             wsprintf(str, _T("찬스 횟수: %d 번"), chanceCount);
             TextOut(hdc, rc.right - 120, rc.top + 5, str, wcslen(str));
 
-
+            DeleteObject(hBitmap);
+            DeleteDC(memdc);
             EndPaint(hWnd, &ps);
         }
         break;
