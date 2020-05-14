@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Blocked32.h"
 #include "time.h"
+#include "math.h"
 #include "Resource.h"
 
 #define MAX_LOADSTRING 100
@@ -12,12 +13,14 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+int direction = 0; // 동,서,남,북
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -123,6 +126,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+
+
+void moveBlock(int dir);
+int arr[6][6][2] = { 0, };  // 0: 없음  1:장애물  2:숫자블럭 //  숫자
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     srand(DWORD(GetTickCount()));
@@ -132,11 +140,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     float width = rc.right - rc.left;
     float height = rc.bottom - rc.top;
     float blockWidth = height / 6;
-    int x, y;
+    static float x=0, y=0;
+    static float mx=0, my=0;
     static int chanceClickNumber = 0;
     static bool isChanceClick = false;
     static int chanceNum = 0;
     static int chanceCount = 0;
+    static bool isClickinBoard = false;
 
     RECT chance1 = { blockWidth  * 6 + 50,blockWidth * 2, blockWidth * 7 + 50 ,blockWidth * 3 };
     RECT chance2 = { chance1.right, blockWidth * 2, chance1.right + blockWidth ,blockWidth * 3 };
@@ -149,28 +159,69 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     static bool isStart = false;
     static int obstacleCnt = 2;
     static int goal = 32;
+    static float angle = 0;
 
-    static int arr[6][6][2] = { 0, };  // 0: 없음  1:장애물  2:숫자블럭 //  숫자
+
     int obstacleX, obstacleY;
     switch (message)
     {
     case WM_CREATE:
         chanceNum = rand() % 3 + 1;
         wsprintf(str,_T("찬스 횟수: %d 번"), chanceCount);
-        obstacleX = rand() % 6;
-        obstacleY = rand() % 6;
-        arr[obstacleX][obstacleY][1] = 1;
-        obstacleX = rand() % 6;
-        obstacleY = rand() % 6;
-        arr[obstacleX][obstacleY][1] = 1;
-        obstacleX = rand() % 6;
-        obstacleY = rand() % 6;
-        arr[obstacleX][obstacleY][1] = 2;
-        arr[obstacleX][obstacleY][2] = 2;
-        obstacleX = rand() % 6;
-        obstacleY = rand() % 6;
-        arr[obstacleX][obstacleY][1] = 2;
-        arr[obstacleX][obstacleY][2] = 2;
+        for(int i=0;i<6;i++)
+            for (int j = 0; j < 6; j++)
+            {
+                arr[i][j][1] = 0;
+                arr[i][j][2] = 0;
+            }
+
+        while (1)
+        {
+            obstacleX = rand() % 6;
+            obstacleY = rand() % 6;
+
+            if (arr[obstacleX][obstacleY][1] == 0)
+                arr[obstacleX][obstacleY][1] = 1;
+            else
+                continue;
+            break;
+        }
+        while (1)
+        {
+            obstacleX = rand() % 6;
+            obstacleY = rand() % 6;
+            if (arr[obstacleX][obstacleY][1] == 0)
+                arr[obstacleX][obstacleY][1] = 1;
+            else
+                continue;
+            break;
+        }
+        while (1)
+        {
+            obstacleX = rand() % 6;
+            obstacleY = rand() % 6;
+            if (arr[obstacleX][obstacleY][1] == 0)
+            {
+                arr[obstacleX][obstacleY][1] = 2;
+                arr[obstacleX][obstacleY][2] = 2;
+            }
+            else
+                continue;
+            break;
+        }
+        while (1)
+        {
+            obstacleX = rand() % 6;
+            obstacleY = rand() % 6;
+            if (arr[obstacleX][obstacleY][1] == 0)
+            {
+                arr[obstacleX][obstacleY][1] = 2;
+                arr[obstacleX][obstacleY][2] = 2;
+            }
+            else
+                continue;
+            break;
+        }
         break;
     case WM_COMMAND:
         {
@@ -237,6 +288,38 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
       
             isChanceClick = true;
         }
+
+        else if (isStart)
+        {
+            if ((rc.left <= x && x <= blockWidth * 6) && (rc.top <= y && y <= blockWidth * 6))
+                isClickinBoard = true;
+        }
+        InvalidateRect(hWnd, NULL, true);
+        break;
+    case WM_LBUTTONUP:
+        mx = LOWORD(lParam);
+        my = HIWORD(lParam);
+        if (isClickinBoard)
+        {
+            angle = atan2f(my - y, mx - x) * 180 / 3.14;
+            if (-45 <= angle && angle < 45)
+                direction = 1;
+            else if (135 <= angle || angle < -135)
+                direction = 2;
+            else if (45 <= angle && angle < 135)
+                direction = 3;
+            else if (-135 < angle && angle <= -45)
+                direction = 4;
+            isClickinBoard = false;
+        }
+
+        if (direction != 0)
+        {
+            moveBlock(direction);
+            direction = 0;
+        }
+
+
         InvalidateRect(hWnd, NULL, true);
         break;
     case WM_PAINT:
@@ -312,6 +395,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         {
                             if (arr[i][j][2] == 2)
                                 hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));
+                            else if (arr[i][j][2] == 4)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP4));
+                            else if (arr[i][j][2] == 8)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP5));
+                            else if (arr[i][j][2] == 16)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP6));
+                            else if (arr[i][j][2] == 32)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP7));
+                            else if (arr[i][j][2] == 64)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP8));
+                            else if (arr[i][j][2] == 128)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP9));
+                            else if (arr[i][j][2] == 256)
+                                hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP10));
 
                             GetObject(hBitmap, sizeof(BITMAP), &bmp);
                             SelectObject(memdc, hBitmap);
@@ -322,6 +419,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
               
             }
+
+
 
 
             wsprintf(str, _T("찬스 횟수: %d 번"), chanceCount);
@@ -359,4 +458,177 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+
+void moveBlock(int dir)
+{
+    int check = 0;
+    if (dir == 1)
+    {
+        while (1)
+        {
+            check = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (arr[i][j][1] == 2)
+                    {
+                        if (j < 5)
+                        {
+                            if (arr[i][j + 1][1] == 0)
+                            {
+                                arr[i][j + 1][1] = 2;
+                                arr[i][j + 1][2] = arr[i][j][2];
+                                arr[i][j][1] = 0;
+                                arr[i][j][2] = 0;
+                                check++;
+                                continue;
+                            }
+                            else if (arr[i][j + 1][1] == 2)
+                            {
+                                if (arr[i][j + 1][2] == arr[i][j][2])
+                                {
+                                    arr[i][j + 1][2] += arr[i][j][2];
+                                    arr[i][j][1] = 0;
+                                    arr[i][j][2] = 0;
+                                    check++;
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (check == 0)
+                break;
+        }
+    }
+
+    else if (dir == 2)
+    {
+        while (1)
+        {
+            check = 0;
+            for (int i = 5; i >= 0; i--)
+            {
+                for (int j = 5; j >= 0; j--)
+                {
+                    if (arr[i][j][1] == 2)
+                    {
+                        if (j > 0)
+                        {
+                            if (arr[i][j - 1][1] == 0)
+                            {
+                                arr[i][j - 1][1] = 2;
+                                arr[i][j - 1][2] = arr[i][j][2];
+                                arr[i][j][1] = 0;
+                                arr[i][j][2] = 0;
+                                check++;
+                                continue;
+                            }
+                            else if (arr[i][j - 1][1] == 2)
+                            {
+                                if (arr[i][j - 1][2] == arr[i][j][2])
+                                {
+                                    arr[i][j - 1][2] += arr[i][j][2];
+                                    arr[i][j][1] = 0;
+                                    arr[i][j][2] = 0;
+                                    check++;
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (check == 0)
+                break;
+        }
+    }
+
+    else if (dir == 3)
+    {
+        while (1)
+        {
+            check = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (arr[i][j][1] == 2)
+                    {
+                        if (i < 5)
+                        {
+                            if (arr[i + 1][j][1] == 0)
+                            {
+                                arr[i + 1][j][1] = 2;
+                                arr[i + 1][j][2] = arr[i][j][2];
+                                arr[i][j][1] = 0;
+                                arr[i][j][2] = 0;
+                                check++;
+                                continue;
+                            }
+                            else if (arr[i + 1][j][1] == 2)
+                            {
+                                if (arr[i + 1][j][2] == arr[i][j][2])
+                                {
+                                    arr[i + 1][j][2] += arr[i][j][2];
+                                    arr[i][j][1] = 0;
+                                    arr[i][j][2] = 0;
+                                    check++;
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (check == 0)
+                break;
+        }
+    }
+
+    else if (dir == 4)
+    {
+        while (1)
+        {
+            check = 0;
+            for (int j = 5; j >= 0; j--)
+            {
+                for (int i = 5; i >= 0; i--)
+                {
+                    if (arr[i][j][1] == 2)
+                    {
+                        if (i != 0)
+                        {
+                            if (arr[i- 1][j][1] == 0)
+                            {
+                                arr[i - 1][j][1] = 2;
+                                arr[i - 1][j][2] = arr[i][j][2];
+                                arr[i][j][1] = 0;
+                                arr[i][j][2] = 0;
+                                check++;
+                                continue;
+                            }
+                            else if (arr[i - 1][j][1] == 2)
+                            {
+                                if (arr[i - 1][j][2] == arr[i][j][2])
+                                {
+                                    arr[i - 1][j][2] += arr[i][j][2];
+                                    arr[i][j][1] = 0;
+                                    arr[i][j][2] = 0;
+                                    check++;
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (check == 0)
+                break;
+        }
+    }
 }
