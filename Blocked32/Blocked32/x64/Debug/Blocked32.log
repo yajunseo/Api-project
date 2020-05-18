@@ -1,45 +1,45 @@
 ﻿  Blocked32.cpp
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(140,17): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(141,18): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,38): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,38): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,54): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,54): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,74): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,74): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,91): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(151,91): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(152,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(153,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(304,50): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(334,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(335,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(335,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(336,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(337,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(371,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(371,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(373,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(373,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(375,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(375,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(392,106): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(392,89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(392,63): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(392,46): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(415,111): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(415,94): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(415,78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(415,59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(427,70): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(144,17): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(145,18): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,38): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,38): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,54): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,54): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,74): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,74): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,91): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(156,91): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(157,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,48): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,48): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,67): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,67): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,92): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(158,92): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(310,50): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(361,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(362,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(362,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(363,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(364,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(398,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(398,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(400,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(400,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(402,104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(402,87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(455,106): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(455,89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(455,63): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(455,46): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(478,111): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(478,94): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(478,78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(478,59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\Blocked32\Blocked32.cpp(493,70): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Blocked32.vcxproj -> C:\Users\yajunseo\Desktop\practice\Api-project\Blocked32\x64\Debug\Blocked32.exe

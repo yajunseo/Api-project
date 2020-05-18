@@ -14,6 +14,12 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 int direction = 0; // 동,서,남,북
+int arr[6][7][2] = { 0, };  // 0: 없음  1:장애물  2:숫자블럭 //  숫자
+void moveBlock(int dir);
+bool isGoal(int goal);
+void reset();
+bool noMove();
+
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -128,8 +134,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 
 
-void moveBlock(int dir);
-int arr[6][6][2] = { 0, };  // 0: 없음  1:장애물  2:숫자블럭 //  숫자
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -147,6 +151,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     static int chanceNum = 0;
     static int chanceCount = 0;
     static bool isClickinBoard = false;
+    static bool cantMove = false;
 
     RECT chance1 = { blockWidth  * 6 + 50,blockWidth * 2, blockWidth * 7 + 50 ,blockWidth * 3 };
     RECT chance2 = { chance1.right, blockWidth * 2, chance1.right + blockWidth ,blockWidth * 3 };
@@ -160,6 +165,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     static int obstacleCnt = 2;
     static int goal = 32;
     static float angle = 0;
+    static bool isScoreGoal = false;
+    static bool chacebreak = false;
+    static bool obstacleSpawn = false;
 
 
     int obstacleX, obstacleY;
@@ -167,61 +175,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         chanceNum = rand() % 3 + 1;
-        wsprintf(str,_T("찬스 횟수: %d 번"), chanceCount);
-        for(int i=0;i<6;i++)
-            for (int j = 0; j < 6; j++)
-            {
-                arr[i][j][1] = 0;
-                arr[i][j][2] = 0;
-            }
+        wsprintf(str,_T("찬스 횟수: %d 번"), 0);
+        reset();
 
-        while (1)
-        {
-            obstacleX = rand() % 6;
-            obstacleY = rand() % 6;
-
-            if (arr[obstacleX][obstacleY][1] == 0)
-                arr[obstacleX][obstacleY][1] = 1;
-            else
-                continue;
-            break;
-        }
-        while (1)
-        {
-            obstacleX = rand() % 6;
-            obstacleY = rand() % 6;
-            if (arr[obstacleX][obstacleY][1] == 0)
-                arr[obstacleX][obstacleY][1] = 1;
-            else
-                continue;
-            break;
-        }
-        while (1)
-        {
-            obstacleX = rand() % 6;
-            obstacleY = rand() % 6;
-            if (arr[obstacleX][obstacleY][1] == 0)
-            {
-                arr[obstacleX][obstacleY][1] = 2;
-                arr[obstacleX][obstacleY][2] = 2;
-            }
-            else
-                continue;
-            break;
-        }
-        while (1)
-        {
-            obstacleX = rand() % 6;
-            obstacleY = rand() % 6;
-            if (arr[obstacleX][obstacleY][1] == 0)
-            {
-                arr[obstacleX][obstacleY][1] = 2;
-                arr[obstacleX][obstacleY][2] = 2;
-            }
-            else
-                continue;
-            break;
-        }
+   
         break;
     case WM_COMMAND:
         {
@@ -230,9 +187,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
             case IDM_START:
+                chanceClickNumber = 0;
+                isChanceClick = false;
+                chanceNum = 0;
+                chanceCount = 0;
+                isClickinBoard = false;
+                direction = 0;
+                isStart = false;
+                obstacleCnt = 2;
+                goal = 32;
+                angle = 0;
+                isScoreGoal = false;
+                chacebreak = false;
+                obstacleSpawn = false;
+                cantMove = false;
+                chanceNum = rand() % 3 + 1;
+                wsprintf(str, _T("찬스 횟수: %d 번"), 0);
+               cantMove = false;
+                reset();
+                InvalidateRect(hWnd, NULL, true);
                 break;
             case ID_32771:
                 isStart = true;
+                obstacleSpawn = true;
                 break;
             case ID_32772:
                 DestroyWindow(hWnd);
@@ -277,22 +254,51 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_LBUTTONDOWN:
         x = LOWORD(lParam);
         y = HIWORD(lParam);
+        chacebreak = false;
         if (!isStart && !isChanceClick)
         {
-            if(chance1.left<= x && x<=chance1.right && chance1.top <= y && y <= chance1.bottom)
+            if (chance1.left <= x && x <= chance1.right && chance1.top <= y && y <= chance1.bottom)
+            {
                 chanceClickNumber = 1;
+                isChanceClick = true;
+            }
             else if (chance2.left <= x && x <= chance2.right && chance2.top <= y && y <= chance2.bottom)
+            {
                 chanceClickNumber = 2;
+                isChanceClick = true;
+            }
             else if (chance3.left <= x && x <= chance3.right && chance3.top <= y && y <= chance3.bottom)
+            {
                 chanceClickNumber = 3;
-      
-            isChanceClick = true;
+                isChanceClick = true;
+            }
         }
 
         else if (isStart)
         {
-            if ((rc.left <= x && x <= blockWidth * 6) && (rc.top <= y && y <= blockWidth * 6))
-                isClickinBoard = true;
+            for(int i=0;i<6;i++)
+                for (int j = 0; j < 6; j++)
+                {
+                    if (arr[i][j][1] == 1)
+                    {
+                        if ((j * blockWidth <= x && x <= (j + 1) * blockWidth) && (i * blockWidth <= y && y <= (i + 1) * blockWidth))
+                        {
+                            if (chanceCount > 0)
+                            {
+                                arr[i][j][1] = 0;
+                                chanceCount--;
+                                chacebreak = true;
+      
+                            }
+                        }
+                    }
+                }
+
+            if (!chacebreak)
+            {
+                if ((rc.left <= x && x <= blockWidth * 6) && (rc.top <= y && y <= blockWidth * 6))
+                    isClickinBoard = true;
+            }
         }
         InvalidateRect(hWnd, NULL, true);
         break;
@@ -316,6 +322,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         if (direction != 0)
         {
             moveBlock(direction);
+            cantMove = noMove();
+            isScoreGoal = isGoal(goal);
+     
+            if(!isScoreGoal)
+            {
+                while (1)
+                {
+                    obstacleX = rand() % 6;
+                    obstacleY = rand() % 6;
+                    if (arr[obstacleX][obstacleY][1] == 0)
+                    {
+                        arr[obstacleX][obstacleY][1] = 2;
+                        arr[obstacleX][obstacleY][2] = 2;
+                    }
+                    else
+                        continue;
+                    break;
+                }
+              
+            }
             direction = 0;
         }
 
@@ -329,6 +355,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             memdc = CreateCompatibleDC(hdc);
             hBitmap = (HBITMAP)LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP11));
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
             for (int i = 0; i <= 6; i++)
             {
                 MoveToEx(hdc, rc.left, i * blockWidth, NULL);
@@ -380,6 +407,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             else if(isStart)
             {
+                if (obstacleSpawn)
+                {
+                    for (int i = 0; i < obstacleCnt; i++)
+                    {
+                        while (1)
+                        {
+                            obstacleX = rand() % 6;
+                            obstacleY = rand() % 6;
+
+                            if (arr[obstacleX][obstacleY][1] == 0)
+                                arr[obstacleX][obstacleY][1] = 1;
+                            else
+                                continue;
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < 2; i++)
+                    {
+                        while (1)
+                        {
+                            obstacleX = rand() % 6;
+                            obstacleY = rand() % 6;
+                            if (arr[obstacleX][obstacleY][1] == 0)
+                            {
+                                arr[obstacleX][obstacleY][1] = 2;
+                                arr[obstacleX][obstacleY][2] = 2;
+                            }
+                            else
+                                continue;
+                            break;
+                        }
+                    }
+                   
+                    obstacleSpawn = false;
+                }
+            
                 for (int i = 0; i < 6; i++)
                 {
                     for (int j = 0; j < 6; j++)
@@ -423,9 +486,59 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 
 
-            wsprintf(str, _T("찬스 횟수: %d 번"), chanceCount);
+            if(isChanceClick)
+                wsprintf(str, _T("찬스 횟수: %d 번"), chanceCount);
+            else
+                wsprintf(str, _T("찬스 횟수: %d 번"), 0);
             TextOut(hdc, rc.right - 120, rc.top + 5, str, wcslen(str));
 
+            if (isScoreGoal)
+            {
+                MessageBox(hWnd, _T("목표점수 클리어"), _T("클리어"), MB_OK);
+                chanceClickNumber = 0;
+                isChanceClick = false;
+                chanceNum = 0;
+                chanceCount = 0;
+                isClickinBoard = false;
+                direction = 0;
+                isStart = false;
+                obstacleCnt = 2;
+                goal = 32;
+                angle = 0;
+                isScoreGoal = false;
+                chacebreak = false;
+                obstacleSpawn = false;
+                cantMove = false;
+                chanceNum = rand() % 3 + 1;
+                wsprintf(str, _T("찬스 횟수: %d 번"), 0);
+                cantMove = false;
+                reset();
+            }
+
+            if (cantMove)
+            {
+                MessageBox(hWnd, _T("움직일 수 있는 블록이 없습니다"), _T("실패"), MB_OK);
+                chanceClickNumber = 0;
+                isChanceClick = false;
+                chanceNum = 0;
+                chanceCount = 0;
+                isClickinBoard = false;
+                direction = 0;
+                isStart = false;
+                obstacleCnt = 2;
+                goal = 32;
+                angle = 0;
+                isScoreGoal = false;
+                chacebreak = false;
+                obstacleSpawn = false;
+                cantMove = false;
+                chanceNum = rand() % 3 + 1;
+                wsprintf(str, _T("찬스 횟수: %d 번"), 0);
+                cantMove = false;
+                reset();
+            }
+
+       
             DeleteObject(hBitmap);
             DeleteDC(memdc);
             EndPaint(hWnd, &ps);
@@ -631,4 +744,50 @@ void moveBlock(int dir)
                 break;
         }
     }
+
+
+}
+
+bool isGoal(int goal) {
+    for (int i = 0; i < 6; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            if (arr[i][j][1] == 2)
+            {
+                if (arr[i][j][2] == goal)
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+
+void reset()
+{
+    for (int i = 0; i < 6; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            arr[i][j][1] = 0;
+            arr[i][j][2] = 0;
+        }
+    }
+}
+
+bool noMove()
+{
+    int count = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            if (arr[i][j][1] != 0)
+                count++;
+        }
+    }
+    if (count == 36)
+        return true;
+    else
+        return false;
 }
